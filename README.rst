@@ -3,25 +3,19 @@ startup gunicorn as service
 ====
 Add python file as service in /etc/init.d/
 
-example: /etc/init.d/myproj
+example: /etc/init.d/myproj::
 
     #!/usr/local/bin/python
-
-
     import sys, os
-    
     from  gunicorn_service import ServiceSetting, gunicorn_service
-
-
     p = ServiceSetting(   config="/home/project/myproj.py"
                           name=os.path.basename(__file__), 
                           exe="/usr/local/bin/gunicorn" )
-
-
     gunicorn_service( p )
 
 
-myproj.py
+myproj.py::
+
     settings            = "Game.settings.local" 
     bind                = "0.0.0.0:55555"       
     backlog             = 512                   
@@ -32,7 +26,7 @@ myproj.py
     max_requests        = 40000                 
     chdir               = "/hoem/SP/Dev/TestWebServer/Server/Game/Game"
     worker_class        = "gevent"              
-    
+
 
     
     
